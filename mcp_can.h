@@ -41,6 +41,8 @@ class MCP_CAN
     INT8U   MCPCS;                                                      // Chip Select pin number
     INT8U   mcpMode;                                                    // Mode to return to after configurations are performed.
     
+    SPISettings spiSettings;
+
 
 /*********************************************************************************************************
  *  mcp2515 driver function 
@@ -106,7 +108,7 @@ class MCP_CAN
     INT8U sendMsg();                                                    // Send message
 
 public:
-    MCP_CAN(INT8U _CS);
+    MCP_CAN(INT8U _CS, const SPISettings& spiSettings = SPISettings(10000000, MSBFIRST, SPI_MODE0));
     INT8U begin(INT8U idmodeset, INT8U speedset, INT8U clockset);       // Initialize controller parameters
     INT8U init_Mask(INT8U num, INT8U ext, INT32U ulData);               // Initialize Mask(s)
     INT8U init_Mask(INT8U num, INT32U ulData);                          // Initialize Mask(s)
